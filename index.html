@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Pet Saúde - Diretório Completo</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .prose p { margin-bottom: 1.25rem; }
+    </style>
+</head>
+<body class="min-h-screen bg-[#F8F9FA] text-[#1A1A1A] antialiased">
+
+    <!-- HEADER -->
+    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center gap-2 cursor-pointer group" onclick="showPage('home')">
+                    <div class="w-10 h-10 bg-green-500 rounded-xl flex items-center justify-center text-white shadow-lg shadow-green-200">
+                        <i data-lucide="paw-print"></i>
+                    </div>
+                    <span class="text-xl font-bold tracking-tight text-gray-900">
+                        Guia Pet <span class="text-green-600">Saúde</span>
+                    </span>
+                </div>
+                <nav class="hidden md:flex items-center gap-8">
+                    <button onclick="showPage('home')" class="text-sm font-medium hover:text-green-600 transition-colors">Início</button>
+                    <button onclick="showArticle('vomito')" class="text-sm font-medium hover:text-green-600 transition-colors">Vômito</button>
+                    <button onclick="showArticle('diarreia')" class="text-sm font-medium hover:text-green-600 transition-colors">Diarreia</button>
+                    <button onclick="showArticle('ansiedade')" class="text-sm font-medium hover:text-green-600 transition-colors">Ansiedade</button>
+                </nav>
+                <div class="md:hidden">
+                    <button onclick="toggleMenu()" class="p-2 text-gray-600 hover:bg-gray-100 rounded-lg">
+                        <i data-lucide="menu" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-100 px-4 py-6 space-y-4">
+            <button onclick="showPage('home')" class="block w-full text-left px-4 py-2 text-lg font-medium hover:bg-green-50 rounded-lg">Início</button>
+            <button onclick="showArticle('vomito')" class="block w-full text-left px-4 py-2 text-lg font-medium hover:bg-green-50 rounded-lg">Vômito</button>
+            <button onclick="showArticle('diarreia')" class="block w-full text-left px-4 py-2 text-lg font-medium hover:bg-green-50 rounded-lg">Diarreia</button>
+            <button onclick="showArticle('ansiedade')" class="block w-full text-left px-4 py-2 text-lg font-medium hover:bg-green-50 rounded-lg">Ansiedade</button>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div id="home-page">
+            <section class="text-center space-y-6 max-w-3xl mx-auto mb-12">
+                <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900 leading-tight">
+                    Tudo sobre a <span class="text-green-600">saúde do seu cão</span>.
+                </h1>
+                <div class="relative max-w-xl mx-auto pt-4">
+                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none pt-4">
+                        <i data-lucide="search" class="h-5 w-5 text-gray-400"></i>
+                    </div>
+                    <input type="text" id="search-input" oninput="filterArticles()" placeholder="Pesquisar sintomas ou comportamentos..." class="block w-full pl-11 pr-4 py-4 bg-white border border-gray-200 rounded-2xl shadow-sm focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all">
+                </div>
+            </section>
+            <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        </div>
+
+        <div id="article-page" class="hidden">
+            <div class="max-w-3xl mx-auto space-y-8">
+                <button onclick="showPage('home')" class="flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-green-600 transition-colors group">
+                    <i data-lucide="arrow-left" size="16"></i> Voltar para a lista
+                </button>
+                <article id="article-content" class="bg-white p-8 md:p-12 rounded-3xl border border-gray-100 shadow-sm space-y-6"></article>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-t border-gray-100 py-12 mt-20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="space-y-4">
+                    <div class="flex items-center justify-center md:justify-start gap-2">
+                        <div class="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center text-white"><i data-lucide="paw-print" size="18"></i></div>
+                        <span class="text-lg font-bold text-gray-900">Guia Pet <span class="text-green-600">Saúde</span></span>
+                    </div>
+                    <p class="text-sm text-gray-500">Informações confiáveis para o seu melhor amigo.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-gray-900 mb-4">Links</h4>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li><button onclick="showPage('home')" class="hover:text-green-600">Início</button></li>
+                        <li><button onclick="showArticle('vomito')" class="hover:text-green-600">Vômito</button></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-gray-900 mb-4">Aviso</h4>
+                    <p class="text-xs text-gray-400">Este site é informativo. Procure sempre um veterinário.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const ARTICLES = [
+            { id: 'vomito', title: 'Cachorro vomitando o que pode ser', excerpt: 'Pode ser ingestão rápida, intoxicação ou doenças virais.', category: 'saude', content: 'O vômito pode ser causado por ingestão rápida de comida, mudança na dieta, intoxicação ou doenças virais. Se houver sangue ou febre, procure ajuda profissional imediatamente.' },
+            { id: 'diarreia', title: 'Cachorro com diarreia o que fazer', excerpt: 'Dicas de primeiros socorros e como identificar a gravidade.', category: 'saude', content: 'A diarreia pode ser causada por estresse, vermes ou alimentação inadequada. Ofereça água fresca e dieta leve. Se persistir por mais de 24h, procure a clínica.' },
+            { id: 'febre', title: 'Cachorro com febre sintomas e tratamento', excerpt: 'Saiba como medir a temperatura e os sinais de febre.', category: 'saude', content: 'A temperatura normal é entre 38°C e 39,2°C. Sinais incluem nariz seco e quente, olhos vermelhos e falta de apetite. Nunca dê remédios humanos.' },
+            { id: 'grama', title: 'Cachorro comendo grama é normal', excerpt: 'Descubra por que os cães buscam vegetação.', category: 'comportamento', content: 'Muitos cães comem grama para auxiliar na digestão ou induzir o vômito. Se for ocasional, geralmente não é problema.' },
+            { id: 'tremendo', title: 'Cachorro tremendo o que pode ser', excerpt: 'Tremores por frio, medo, dor ou problemas neurológicos.', category: 'saude', content: 'Tremores podem ser reações ao frio ou medo, mas também indicam dor intensa ou intoxicação. Observe o contexto.' },
+            { id: 'apetite', title: 'Cachorro com falta de apetite o que pode ser', excerpt: 'A inapetência requer atenção cuidadosa.', category: 'saude', content: 'Pode ser causada por dor, febre ou problemas dentários. Se recusar comida por mais de 24h, investigue a causa.' },
+            { id: 'urina', title: 'Cachorro urinando sangue o que pode ser', excerpt: 'Sangue na urina é sempre um sinal de alerta grave.', category: 'saude', content: 'Pode indicar infecção urinária, cálculos ou envenenamento. Exige exames imediatos.' },
+            { id: 'barriga', title: 'Cachorro com barriga inchada o que pode ser', excerpt: 'Pode indicar gases ou a perigosa torção gástrica.', category: 'saude', content: 'Barriga inchada e dura pode ser sinal de verminoses ou torção gástrica. É uma emergência de vida ou morte.' },
+            { id: 'tosse', title: 'Cachorro com tosse o que pode ser', excerpt: 'Irritação simples ou a famosa tosse dos canis.', category: 'saude', content: 'Pode indicar problemas cardíacos ou infecções respiratórias. A tosse dos canis é altamente contagiosa.' },
+            { id: 'halito', title: 'Cachorro com mau hálito o que pode ser', excerpt: 'Higiene bucal e problemas digestivos.', category: 'cuidados', content: 'Geralmente causado por tártaro. Hálito com cheiro estranho pode indicar problemas renais ou diabetes.' },
+            { id: 'olho_vermelho', title: 'Cachorro com olho vermelho o que pode ser', excerpt: 'Conjuntivite ou problemas mais graves.', category: 'saude', content: 'Vermelhidão pode ser irritação ou glaucoma. Se o cão coçar muito, procure ajuda.' },
+            { id: 'coceira', title: 'Cachorro com coceira o que pode ser', excerpt: 'Alergias, pulgas e fungos.', category: 'saude', content: 'Causas comuns são dermatite por pulga ou alergias alimentares. O controle de parasitas é o primeiro passo.' },
+            { id: 'carrapato', title: 'Cachorro com carrapato o que fazer', excerpt: 'Como remover com segurança e prevenir doenças.', category: 'cuidados', content: 'Carrapatos transmitem doenças graves. Remova com pinça sem esmagar. Use preventivos regularmente.' },
+            { id: 'pulga', title: 'Cachorro com pulga como eliminar', excerpt: 'Acabe com a infestação no pet e no ambiente.', category: 'cuidados', content: 'Trate o animal e o ambiente. Aspire a casa com frequência e use produtos específicos.' },
+            { id: 'ferida', title: 'Cachorro com ferida na pele o que pode ser', excerpt: 'Feridas por lambedura, fungos ou infecções.', category: 'saude', content: 'Qualquer ferida que não cicatriza deve ser avaliada. Pode ser sarna ou fungos. Mantenha limpo.' },
+            { id: 'dor_pata', title: 'Cachorro com dor na pata o que pode ser', excerpt: 'Cortes ou problemas articulares.', category: 'saude', content: 'Verifique objetos estranhos. A dor pode ser reflexo de problemas na coluna ou displasia.' },
+            { id: 'mancando', title: 'Cachorro mancando o que pode ser', excerpt: 'Lesões na pata ou problemas articulares.', category: 'saude', content: 'Verifique as almofadinhas. Pode ser luxação de patela ou ruptura de ligamento.' },
+            { id: 'secrecao', title: 'Cachorro com secreção no olho o que pode ser', excerpt: 'Remela excessiva indica infecção.', category: 'saude', content: 'Secreção amarelada pode ser conjuntivite. Limpe com soro fisiológico.' },
+            { id: 'nariz_seco', title: 'Cachorro com nariz seco é normal', excerpt: 'Quando é fisiológico ou sinal de febre.', category: 'saude', content: 'Nem sempre é febre. Ocorre após o sono ou sol. Se houver rachaduras, procure um veterinário.' },
+            { id: 'respirando_rapido', title: 'Cachorro respirando rápido o que pode ser', excerpt: 'Calor ou problemas pulmonares.', category: 'saude', content: 'Em repouso é preocupante. Pode indicar dor ou anemia. Língua roxa é emergência.' },
+            { id: 'soluco', title: 'Cachorro com soluço é normal', excerpt: 'Comum em filhotes.', category: 'comportamento', content: 'Geralmente acontece após comer rápido. Passa sozinho em minutos.' },
+            { id: 'espirrando', title: 'Cachorro espirrando muito o que pode ser', excerpt: 'Alergias ou corpo estranho.', category: 'saude', content: 'Espirros constantes podem indicar rinite ou algo preso. Sangramento é urgente.' },
+            { id: 'vomito_amarelo', title: 'Cachorro com vômito amarelo o que pode ser', excerpt: 'Líquido biliar por estômago vazio.', category: 'saude', content: 'Acontece quando o cão fica muito tempo sem comer. Fracione as refeições.' },
+            { id: 'diarreia_sangue', title: 'Cachorro com diarreia com sangue', excerpt: 'Emergência que indica lesão intestinal.', category: 'saude', content: 'Pode ser parvovirose ou verminose. O animal precisa de atendimento urgente.' },
+            { id: 'chorando', title: 'Cachorro chorando muito o que pode ser', excerpt: 'Pedido de ajuda por dor ou carência.', category: 'comportamento', content: 'Choram por dor, fome ou ansiedade. Se for repentino, pode ser dor intensa.' },
+            { id: 'latindo', title: 'Cachorro latindo muito o que fazer', excerpt: 'Lide com latidos por tédio ou medo.', category: 'comportamento', content: 'Indicam tédio ou ansiedade. Enriquecimento ambiental ajuda muito.' },
+            { id: 'destruindo', title: 'Cachorro destruindo coisas o que fazer', excerpt: 'Energia acumulada ou ansiedade.', category: 'comportamento', content: 'Falta de estímulo. Aumente passeios e ofereça brinquedos.' },
+            { id: 'cavando', title: 'Cachorro cavando buraco no quintal', excerpt: 'Instinto ou busca por frescor.', category: 'comportamento', content: 'Comportamento natural. Ofereça uma área própria para ele cavar.' },
+            { id: 'uivando', title: 'Cachorro uivando muito o que significa', excerpt: 'Herança ancestral de comunicação.', category: 'comportamento', content: 'Respondem a sons agudos ou por solidão. Reduza a ansiedade de separação.' },
+            { id: 'mordendo', title: 'Cachorro mordendo tudo o que fazer', excerpt: 'Comum em filhotes.', category: 'comportamento', content: 'Exploram o mundo. Redirecione para brinquedos adequados.' },
+            { id: 'fogos', title: 'Cachorro com medo de fogos o que fazer', excerpt: 'Proteja seu pet de ruídos altos.', category: 'comportamento', content: 'Crie um refúgio seguro. Nunca force o cão a enfrentar o barulho.' },
+            { id: 'ansiedade', title: 'Cachorro com ansiedade o que fazer', excerpt: 'Identifique sinais de estresse.', category: 'comportamento', content: 'Causa destruição e latidos. Requer exercícios e enriquecimento.' },
+            { id: 'agitado', title: 'Cachorro muito agitado o que pode ser', excerpt: 'Falta de rotina ou energia.', category: 'comportamento', content: 'Falta de exercícios. Passeios e jogos de faro ajudam.' },
+            { id: 'triste', title: 'Cachorro triste o que fazer', excerpt: 'Identifique a depressão canina.', category: 'comportamento', content: 'Mudanças na rotina causam apatia. Interação social é fundamental.' },
+            { id: 'dormindo', title: 'Cachorro dormindo muito é normal', excerpt: 'Sono natural ou sinal de doença.', category: 'saude', content: 'Dormem 12-14h. Se for excessivo, pode ser hipotireoidismo ou dor.' },
+            { id: 'lambendo_pata', title: 'Cachorro lambendo a pata o que pode ser', excerpt: 'Alergias ou ansiedade.', category: 'comportamento', content: 'Sinal de alergia ou estresse. Umidade pode causar fungos.' },
+            { id: 'queda_pelo', title: 'Cachorro com queda de pelo o que pode ser', excerpt: 'Troca natural ou problemas de saúde.', category: 'cuidados', content: 'Pode ser sazonal ou sarna. Boa alimentação ajuda na pelagem.' },
+            { id: 'pele_vermelha', title: 'Cachorro com pele vermelha o que pode ser', excerpt: 'Inflamação ou alergia.', category: 'saude', content: 'Sinal de irritação. Banhos medicinais podem ser necessários.' },
+            { id: 'alergia_pele', title: 'Cachorro com alergia na pele', excerpt: 'Diferença entre alimentar e atopia.', category: 'saude', content: 'Problemas crônicos. Controle a coceira e fortaleça a pele.' },
+            { id: 'caspa', title: 'Cachorro com caspa o que pode ser', excerpt: 'Pele seca ou oleosidade.', category: 'cuidados', content: 'Banhos quentes ou ar seco. Use produtos hidratantes.' },
+            { id: 'dor_ouvido', title: 'Cachorro com dor de ouvido sintomas', excerpt: 'Otites causam muito desconforto.', category: 'saude', content: 'Coçam as orelhas e inclinam a cabeça. Cheiro forte é comum.' },
+            { id: 'sacudindo_cabeca', title: 'Cachorro sacudindo a cabeça o que pode ser', excerpt: 'Incômodo no canal auditivo.', category: 'saude', content: 'Indica otite ou algo preso. Pode causar hematomas na orelha.' },
+            { id: 'ouvido_inflamado', title: 'Cachorro com ouvido inflamado', excerpt: 'Limpeza e medicação específica.', category: 'saude', content: 'Pode ser bacteriana ou fúngica. Requer gotas otológicas.' },
+            { id: 'dificuldade_andar', title: 'Cachorro com dificuldade para andar', excerpt: 'Problemas neurológicos ou ortopédicos.', category: 'saude', content: 'Hérnia de disco ou artrite. Fisioterapia ajuda muito.' },
+            { id: 'convulsao', title: 'Cachorro com convulsão o que fazer', excerpt: 'Proteja o animal durante o episódio.', category: 'saude', content: 'Não coloque a mão na boca. Afaste móveis e leve ao médico.' },
+            { id: 'lingua_roxa', title: 'Cachorro com língua roxa o que pode ser', excerpt: 'Falta de oxigênio - Emergência.', category: 'saude', content: 'Sinal de que o oxigênio não chega aos tecidos. Emergência absoluta.' },
+            { id: 'baba_excessiva', title: 'Cachorro com baba excessiva', excerpt: 'Náusea, dor ou envenenamento.', category: 'saude', content: 'Problemas nos dentes ou intoxicação. Observe outros sinais.' },
+            { id: 'olho_lacrimejando', title: 'Cachorro com olho lacrimejando', excerpt: 'Irritação ou duto obstruído.', category: 'saude', content: 'Cílios para dentro ou duto entupido. Limpe com soro.' },
+            { id: 'respiracao_ofegante', title: 'Cachorro com respiração ofegante', excerpt: 'Troca de calor ou dor.', category: 'saude', content: 'Normal no calor, mas em repouso indica dor ou coração.' },
+            { id: 'dificuldade_respirar', title: 'Cachorro com dificuldade para respirar', excerpt: 'Emergência respiratória.', category: 'saude', content: 'Sofrimento respiratório. Procure ajuda veterinária imediata.' }
+        ];
+
+        function init() { lucide.createIcons(); renderGrid(ARTICLES); }
+        function renderGrid(list) {
+            const grid = document.getElementById('articles-grid');
+            grid.innerHTML = list.map(a => `
+                <div onclick="showArticle('${a.id}')" class="group bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-green-500/5 hover:-translate-y-1 transition-all cursor-pointer">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="p-2 rounded-lg ${getCategoryClass(a.category)}"><i data-lucide="${getCategoryIcon(a.category)}" size="20"></i></div>
+                        <i data-lucide="chevron-right" class="text-gray-300 group-hover:text-green-500 transition-colors" size="20"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-green-600 transition-colors">${a.title}</h3>
+                    <p class="text-gray-600 text-sm line-clamp-2">${a.excerpt}</p>
+                </div>`).join('');
+            lucide.createIcons();
+        }
+        function getCategoryClass(c) { return c === 'saude' ? 'bg-red-50 text-red-500' : c === 'comportamento' ? 'bg-blue-50 text-blue-500' : 'bg-green-50 text-green-500'; }
+        function getCategoryIcon(c) { return c === 'saude' ? 'activity' : c === 'comportamento' ? 'heart' : 'info'; }
+        function filterArticles() {
+            const q = document.getElementById('search-input').value.toLowerCase();
+            renderGrid(ARTICLES.filter(a => a.title.toLowerCase().includes(q) || a.excerpt.toLowerCase().includes(q)));
+        }
+        function showPage(p) {
+            document.getElementById('home-page').classList.toggle('hidden', p !== 'home');
+            document.getElementById('article-page').classList.toggle('hidden', p === 'home');
+            window.scrollTo(0, 0); closeMenu();
+        }
+        function showArticle(id) {
+            const a = ARTICLES.find(x => x.id === id); if (!a) return;
+            document.getElementById('article-content').innerHTML = `
+                <div class="space-y-4">
+                    <span class="px-3 py-1 bg-green-50 text-green-600 text-xs font-bold uppercase tracking-wider rounded-full">${a.category}</span>
+                    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 leading-tight">${a.title}</h1>
+                </div>
+                <div class="text-gray-700 leading-relaxed text-lg prose">${a.content.split('\n').map(p => `<p>${p}</p>`).join('')}</div>
+                <div class="pt-8 border-t border-gray-100 mt-12"><div class="bg-yellow-50 p-6 rounded-2xl flex gap-4 items-start"><div class="bg-yellow-100 p-2 rounded-lg text-yellow-700"><i data-lucide="info" size="20"></i></div><div class="space-y-1"><h4 class="font-bold text-yellow-900">Aviso</h4><p class="text-sm text-yellow-800">Este conteúdo é informativo. Procure um veterinário.</p></div></div></div>`;
+            showPage('article'); lucide.createIcons();
+        }
+        function toggleMenu() {
+            const m = document.getElementById('mobile-menu'); const i = document.getElementById('menu-icon');
+            const open = !m.classList.contains('hidden');
+            m.classList.toggle('hidden'); i.setAttribute('data-lucide', open ? 'menu' : 'x'); lucide.createIcons();
+        }
+        function closeMenu() { document.getElementById('mobile-menu').classList.add('hidden'); const i = document.getElementById('menu-icon'); if(i) i.setAttribute('data-lucide', 'menu'); lucide.createIcons(); }
+        window.onload = init;
+    </script>
+</body>
+</html>
