@@ -13,7 +13,14 @@
     <style>
         body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
         .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-        .prose p { margin-bottom: 1.25rem; }
+        .prose h2 { font-size: 1.5rem; font-weight: 700; color: #111827; margin-top: 2rem; margin-bottom: 1rem; }
+        .prose h3 { font-size: 1.25rem; font-weight: 700; color: #111827; margin-top: 1.5rem; margin-bottom: 0.75rem; }
+        .prose p { margin-bottom: 1rem; line-height: 1.625; }
+        .prose ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1rem; }
+        .prose li { margin-bottom: 0.5rem; }
+        .prose strong { font-weight: 700; color: #111827; }
+        .prose a { color: #16a34a; text-decoration: underline; text-underline-offset: 4px; }
+        .prose a:hover { color: #15803d; }
     </style>
 </head>
 <body class="min-h-screen bg-[#F8F9FA] text-[#1A1A1A] antialiased">
@@ -34,7 +41,7 @@
                     <button onclick="showPage('home')" class="text-sm font-medium hover:text-green-600 transition-colors">Início</button>
                     <button onclick="showArticle('vomito')" class="text-sm font-medium hover:text-green-600 transition-colors">Vômito</button>
                     <button onclick="showArticle('diarreia')" class="text-sm font-medium hover:text-green-600 transition-colors">Diarreia</button>
-                    <button onclick="showArticle('ansiedade')" class="text-sm font-medium hover:text-green-600 transition-colors">Ansiedade</button>
+                    <button onclick="showArticle('grama')" class="text-sm font-medium hover:text-green-600 transition-colors">Grama</button>
                 </nav>
                 <div class="md:hidden">
                     <button onclick="toggleMenu()" class="p-2 text-gray-600 hover:bg-gray-100 rounded-lg">
@@ -47,7 +54,7 @@
             <button onclick="showPage('home')" class="block w-full text-left px-4 py-2 text-lg font-medium hover:bg-green-50 rounded-lg">Início</button>
             <button onclick="showArticle('vomito')" class="block w-full text-left px-4 py-2 text-lg font-medium hover:bg-green-50 rounded-lg">Vômito</button>
             <button onclick="showArticle('diarreia')" class="block w-full text-left px-4 py-2 text-lg font-medium hover:bg-green-50 rounded-lg">Diarreia</button>
-            <button onclick="showArticle('ansiedade')" class="block w-full text-left px-4 py-2 text-lg font-medium hover:bg-green-50 rounded-lg">Ansiedade</button>
+            <button onclick="showArticle('grama')" class="block w-full text-left px-4 py-2 text-lg font-medium hover:bg-green-50 rounded-lg">Grama</button>
         </div>
     </header>
 
@@ -65,15 +72,61 @@
                     <input type="text" id="search-input" oninput="filterArticles()" placeholder="Pesquisar sintomas ou comportamentos..." class="block w-full pl-11 pr-4 py-4 bg-white border border-gray-200 rounded-2xl shadow-sm focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all">
                 </div>
             </section>
+
+            <!-- FEATURED PRODUCT SECTION -->
+            <section class="mb-12">
+              <div class="bg-white rounded-3xl border border-green-100 shadow-xl shadow-green-500/5 overflow-hidden flex flex-col md:flex-row items-center">
+                <div class="w-full md:w-1/3 h-64 md:h-auto bg-gray-50 flex items-center justify-center p-8">
+                  <img 
+                    src="https://i.postimg.cc/KzhkRfQd/Antipulgas-vermifugo-1.webp" 
+                    alt="Antipulgas e Vermífugo Recomendado" 
+                    class="max-h-full object-contain rounded-xl shadow-md"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+                <div class="w-full md:w-2/3 p-8 md:p-12 space-y-6">
+                  <div class="inline-flex items-center gap-2 px-3 py-1 bg-green-100 text-green-700 text-xs font-bold uppercase tracking-wider rounded-full">
+                    <i data-lucide="shopping-bag" size="14"></i> Recomendação do Guia
+                  </div>
+                  <h2 class="text-2xl md:text-3xl font-bold text-gray-900">Proteção Completa para seu Pet</h2>
+                  <p class="text-gray-600 text-lg leading-relaxed">
+                    Mantenha seu melhor amigo protegido contra pulgas, carrapatos e vermes com as melhores soluções do mercado. Confira as ofertas exclusivas na Shopee.
+                  </p>
+                  <a 
+                    href="https://s.shopee.com.br/4LF3LKxjIJ" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 px-8 py-4 bg-green-600 text-white font-bold rounded-2xl hover:bg-green-700 transition-all shadow-lg shadow-green-200 group"
+                  >
+                    Ver Oferta na Shopee <i data-lucide="external-link" size="18" class="group-hover:translate-x-1 transition-transform"></i>
+                  </a>
+                </div>
+              </div>
+            </section>
+
             <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
         </div>
 
         <div id="article-page" class="hidden">
             <div class="max-w-3xl mx-auto space-y-8">
                 <button onclick="showPage('home')" class="flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-green-600 transition-colors group">
-                    <i data-lucide="arrow-left" size="16"></i> Voltar para a lista
+                    <i data-lucide="arrow-left" size="16" class="group-hover:-translate-x-1 transition-transform"></i> Voltar para a lista
                 </button>
-                <article id="article-content" class="bg-white p-8 md:p-12 rounded-3xl border border-gray-100 shadow-sm space-y-6"></article>
+                <article id="article-container" class="bg-white p-8 md:p-12 rounded-3xl border border-gray-100 shadow-sm space-y-6">
+                    <div id="article-header" class="space-y-4"></div>
+                    <div id="article-content" class="text-gray-700 leading-relaxed text-lg prose max-w-none"></div>
+                    <div class="pt-8 border-t border-gray-100 mt-12">
+                        <div class="bg-yellow-50 p-6 rounded-2xl flex gap-4 items-start">
+                            <div class="bg-yellow-100 p-2 rounded-lg text-yellow-700">
+                                <i data-lucide="info" size="20"></i>
+                            </div>
+                            <div class="space-y-1">
+                                <h4 class="font-bold text-yellow-900">Aviso Importante</h4>
+                                <p class="text-sm text-yellow-800">Este conteúdo é meramente informativo e não substitui a consulta com um médico veterinário. Em caso de emergência, procure ajuda profissional imediatamente.</p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
             </div>
         </div>
     </main>
@@ -87,388 +140,333 @@
                         <div class="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center text-white"><i data-lucide="paw-print" size="18"></i></div>
                         <span class="text-lg font-bold text-gray-900">Guia Pet <span class="text-green-600">Saúde</span></span>
                     </div>
-                    <p class="text-sm text-gray-500">Informações confiáveis para o seu melhor amigo.</p>
+                    <p class="text-sm text-gray-500">Informações confiáveis para o bem-estar do seu melhor amigo.</p>
                 </div>
                 <div>
-                    <h4 class="font-bold text-gray-900 mb-4">Links</h4>
+                    <h4 class="font-bold text-gray-900 mb-4">Links Rápidos</h4>
                     <ul class="space-y-2 text-sm text-gray-600">
                         <li><button onclick="showPage('home')" class="hover:text-green-600">Início</button></li>
-                        <li><button onclick="showArticle('vomito')" class="hover:text-green-600">Vômito</button></li>
+                        <li><button onclick="showArticle('vomito')" class="hover:text-green-600">Sobre Vômito</button></li>
+                        <li><button onclick="showArticle('diarreia')" class="hover:text-green-600">Sobre Diarreia</button></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-bold text-gray-900 mb-4">Aviso</h4>
-                    <p class="text-xs text-gray-400">Este site é informativo. Procure sempre um veterinário.</p>
+                    <h4 class="font-bold text-gray-900 mb-4">Aviso Legal</h4>
+                    <p class="text-xs text-gray-400 leading-relaxed">As informações contidas neste site são apenas para fins educacionais. Sempre consulte um veterinário qualificado para diagnóstico e tratamento de qualquer condição de saúde do seu animal de estimação.</p>
                 </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-gray-50 text-center text-xs text-gray-400">
+                &copy; <span id="year"></span> Guia Pet Saúde. Todos os direitos reservados.
             </div>
         </div>
     </footer>
 
     <script>
         const ARTICLES = [
-{
-  id: 'vomito',
-  title: 'Cachorro vomitando o que pode ser',
-  excerpt: 'Entenda as causas, tipos de vômito e o que fazer para ajudar seu cachorro.',
-  category: 'saude',
-  content: `
-  <h2>Cachorro vomitando: o que pode ser?</h2>
-
-  <p>Ver um <strong>cachorro vomitando</strong> pode ser preocupante para qualquer tutor. Esse é um sintoma comum, mas que pode indicar desde situações simples até problemas mais graves de saúde. Por isso, entender <strong>cachorro vomitando o que pode ser</strong> é essencial para agir corretamente e garantir o bem-estar do seu pet.</p>
-
-  <p>O vômito em cães pode acontecer de forma isolada ou frequente. Em muitos casos, está relacionado à alimentação, mas também pode ser sinal de doenças. Neste guia completo, você vai descobrir as principais causas, quando se preocupar e o que fazer.</p>
-
-  <h2>Principais causas de cachorro vomitando</h2>
-
-  <h3>1. Alimentação inadequada</h3>
-  <p>Uma das causas mais comuns de cachorro vomitando é a ingestão de alimentos inadequados. Comer restos de comida, alimentos gordurosos ou até lixo pode irritar o estômago do animal e provocar vômito.</p>
-
-  <h3>2. Comer muito rápido</h3>
-  <p>Alguns cães têm o hábito de comer rapidamente, o que pode causar má digestão e levar ao vômito logo após a alimentação.</p>
-
-  <h3>3. Mudança de ração</h3>
-  <p>A troca repentina de ração pode causar desconforto gastrointestinal. O ideal é fazer a transição de forma gradual ao longo de alguns dias.</p>
-
-  <h3>4. Gastrite em cães</h3>
-  <p>A gastrite é uma inflamação no estômago que pode causar vômitos frequentes. Ela pode ser provocada por estresse, alimentação inadequada ou ingestão de substâncias tóxicas.</p>
-
-  <h3>5. Parasitas intestinais</h3>
-  <p>Vermes são uma causa comum, principalmente em filhotes. Por isso, manter a vermifugação em dia é fundamental para evitar problemas.</p>
-
-  <h3>6. Doenças mais graves</h3>
-  <p>Problemas como pancreatite, infecções virais e doenças renais também podem causar vômito. Nesses casos, geralmente o cachorro apresenta outros sintomas além do vômito.</p>
-
-  <h2>Tipos de vômito em cachorro</h2>
-
-  <p>Observar o tipo de vômito pode ajudar a identificar o problema:</p>
-
-  <ul>
-    <li><strong>Vômito amarelo:</strong> geralmente é bile e acontece quando o cachorro fica muito tempo sem comer.</li>
-    <li><strong>Vômito com espuma branca:</strong> pode indicar irritação no estômago ou gastrite.</li>
-    <li><strong>Vômito com sangue:</strong> é um sinal de alerta e exige atendimento veterinário imediato.</li>
-    <li><strong>Vômito com comida:</strong> pode indicar digestão inadequada ou ingestão rápida.</li>
-  </ul>
-
-  <h2>Quando o cachorro vomitando é preocupante?</h2>
-
-  <p>Nem todo vômito é grave, mas existem sinais que indicam que você deve procurar ajuda:</p>
-
-  <ul>
-    <li>Vômitos frequentes no mesmo dia</li>
-    <li>Presença de sangue no vômito</li>
-    <li>Falta de apetite</li>
-    <li>Fraqueza ou apatia</li>
-    <li>Diarreia junto com vômito</li>
-  </ul>
-
-  <p>Se o seu cachorro apresentar esses sintomas, é importante procurar um veterinário o quanto antes.</p>
-
-  <h2>O que fazer quando o cachorro está vomitando?</h2>
-
-  <h3>1. Faça jejum temporário</h3>
-  <p>Suspender a alimentação por 8 a 12 horas ajuda o estômago a se recuperar.</p>
-
-  <h3>2. Ofereça água aos poucos</h3>
-  <p>Manter o cachorro hidratado é essencial. Ofereça pequenas quantidades de água ao longo do dia.</p>
-
-  <h3>3. Alimentação leve</h3>
-  <p>Após o jejum, ofereça alimentos leves como frango cozido sem tempero e arroz.</p>
-
-  <h3>4. Evite automedicação</h3>
-  <p>Nunca dê remédios humanos ao seu cachorro sem orientação profissional.</p>
-
-  <h2>Como prevenir vômito em cachorro</h2>
-
-  <p>Algumas atitudes simples podem evitar esse problema:</p>
-
-  <ul>
-    <li>Oferecer alimentação de qualidade</li>
-    <li>Evitar mudanças bruscas na dieta</li>
-    <li>Manter vermifugação em dia</li>
-    <li>Evitar acesso ao lixo</li>
-    <li>Controlar a velocidade da alimentação</li>
-  </ul>
-
-  <h2>Conclusão</h2>
-
-  <p>O <strong>cachorro vomitando</strong> pode ter diversas causas, desde situações simples até problemas mais sérios. Observar o comportamento do animal e agir rapidamente faz toda a diferença para a saúde do seu pet.</p>
-
-  <p>Se os sintomas persistirem ou piorarem, procure um veterinário. Cuidar da alimentação e manter uma rotina saudável é a melhor forma de prevenção.</p>
-
-  <p>Veja também: <a href="#diarreia">Cachorro com diarreia o que fazer</a></p>
-  `
-},
-          { 
-  id: 'diarreia', 
-  title: 'Cachorro com diarreia o que fazer', 
-  excerpt: 'Dicas de primeiros socorros e como identificar a gravidade.', 
-  category: 'saude', 
-  content: `
-
-<h2>Cachorro com diarreia o que fazer</h2>
-
-<p>Você percebeu que seu cachorro está com diarreia e não sabe o que fazer? Essa é uma situação mais comum do que parece, mas que sempre gera preocupação. Afinal, mudanças nas fezes do pet podem indicar desde algo simples, como uma alteração na alimentação, até problemas mais sérios que precisam de atenção rápida.</p>
-
-<p>A diarreia em cães pode surgir de repente e, muitas vezes, vem acompanhada de outros sinais, como apatia, falta de apetite ou desconforto abdominal. Por isso, entender o que está acontecendo e agir da forma correta é essencial para garantir o bem-estar do seu amigo.</p>
-
-<h3>Cachorro com diarreia o que fazer: principais causas</h3>
-
-<p>Antes de tomar qualquer atitude, é importante entender que a diarreia não é uma doença em si, mas um sintoma. Entre as causas mais comuns estão mudanças bruscas na alimentação, ingestão de alimentos inadequados, restos de comida, lixo ou até algo estragado.</p>
-
-<p>Além disso, parasitas intestinais, como vermes, também podem provocar diarreia. Em alguns casos, o problema pode estar relacionado a infecções, alergias alimentares ou até mesmo estresse. Se quiser entender melhor o conceito geral de diarreia, você pode consultar a <a href="https://pt.wikipedia.org/wiki/Diarreia" target="_blank" rel="nofollow noopener">Wikipedia sobre diarreia</a>, que traz uma explicação mais ampla sobre o tema.</p>
-
-<h3>Sinais de alerta que você deve observar</h3>
-
-<p>Nem toda diarreia é grave, mas alguns sinais indicam que o problema pode ser mais sério. Fique atento se o seu cachorro apresentar fezes muito líquidas por várias horas, presença de sangue, odor muito forte ou mudança de cor.</p>
-
-<p>Outros sintomas importantes incluem vômito, febre, fraqueza, desidratação e falta de interesse por comida ou água. Filhotes e cães idosos merecem atenção redobrada, pois podem piorar mais rapidamente.</p>
-
-<h3>O que fazer em casa com segurança</h3>
-
-<p>Se o cachorro com diarreia estiver ativo, sem outros sintomas graves, algumas medidas simples podem ajudar. A primeira delas é garantir que ele tenha acesso constante a água fresca, já que a perda de líquidos pode levar à desidratação.</p>
-
-<p>Outra orientação comum é oferecer uma alimentação mais leve por um período curto. Alimentos simples, em pequenas quantidades, podem ajudar o sistema digestivo a se recuperar. Evite petiscos, restos de comida e qualquer alimento diferente do habitual.</p>
-
-<p>Também é importante observar o comportamento do animal ao longo do dia. Muitas vezes, a diarreia pode melhorar sozinha em poucas horas quando está relacionada a algo pontual.</p>
-
-<h3>Quando a diarreia pode ser grave?</h3>
-
-<p>Se a diarreia persistir por mais de 24 horas, é fundamental ficar em alerta. Casos que envolvem sangue nas fezes, dor aparente ou sinais de desidratação não devem ser ignorados. Nesses casos, a avaliação de um profissional é indispensável.</p>
-
-<p>Outro ponto importante é quando o cachorro já tem algum problema de saúde ou é muito jovem. Nessas situações, o organismo é mais sensível e pode reagir de forma mais intensa.</p>
-
-<h3>Quando procurar um veterinário</h3>
-
-<p>Você deve procurar um veterinário imediatamente se perceber que a diarreia não melhora, se há outros sintomas associados ou se o cachorro parece abatido. Apenas um profissional poderá identificar a causa exata e indicar o tratamento adequado.</p>
-
-<p>Evite medicar o animal por conta própria, pois isso pode agravar a situação. Cada caso é único, e o diagnóstico correto faz toda a diferença na recuperação do pet.</p>
-
-<h3>Como evitar diarreia em cachorro</h3>
-<a href="https://pt.wikipedia.org/wiki/Sa%C3%BAde_canina" target="_blank" rel="nofollow">
-Saúde canina na Wikipedia
-</a>
-
-<p>Prevenir é sempre o melhor caminho. Manter uma alimentação equilibrada, evitar mudanças bruscas na dieta e não oferecer comida humana são atitudes simples que ajudam bastante.</p>
-
-<p>Além disso, manter a vermifugação em dia, oferecer água limpa e evitar que o cachorro tenha acesso ao lixo ou objetos desconhecidos também reduz muito o risco de problemas digestivos.</p>
-
-<h3>Conclusão: fique atento aos sinais do seu cachorro</h3>
-
-<p>Ao notar cachorro com diarreia, o mais importante é observar o comportamento e agir com calma. Em muitos casos, o problema é passageiro, mas nunca deve ser ignorado.</p>
-
-<p>Cuidar da saúde do seu pet envolve atenção aos pequenos detalhes. Quanto mais cedo você identificar algo diferente, maiores são as chances de resolver rapidamente e evitar complicações.</p>
-
-<h3>Perguntas frequentes</h3>
-
-<p><strong>Diarreia em cachorro é normal?</strong><br>
-Pode acontecer ocasionalmente, mas não deve ser frequente.</p>
-
-<p><strong>Quanto tempo pode durar?</strong><br>
-Se durar mais de 24 horas, já é recomendado buscar orientação.</p>
-
-<p><strong>Posso alimentar normalmente?</strong><br>
-O ideal é oferecer uma dieta leve temporariamente.</p>
-
-<p><strong>Preciso levar ao veterinário sempre?</strong><br>
-Nem sempre, mas é necessário se houver outros sintomas.</p>
-
-<p><strong>Diarreia pode ser grave?</strong><br>
-Sim, principalmente se vier acompanhada de outros sinais como vômito ou fraqueza.</p>
-
-` 
-},
-            {
-  id: 'febre',
-  title: 'Cachorro com febre sintomas e tratamento: como identificar e agir rápido',
-  excerpt: 'Saiba como medir a temperatura, identificar os sinais de febre e tratar seu cachorro com segurança.',
-  category: 'saude',
-  content: `
-<h1>Cachorro com febre sintomas e tratamento: como identificar e agir rápido</h1>
-
-<meta name="description" content="Cachorro com febre sintomas e tratamento: veja como identificar sinais, medir a temperatura e o que fazer para ajudar seu pet com segurança.">
-
-<p><strong>URL sugerida:</strong> /cachorro-com-febre-sintomas-e-tratamento</p>
-
-<p>Se você percebeu seu cachorro diferente, mais quieto ou sem apetite, pode estar lidando com cachorro com febre sintomas e tratamento. Esse é um problema comum, mas que exige atenção rápida.</p>
-
-<p>Neste guia completo, você vai aprender como identificar os sinais de febre, medir corretamente a temperatura e saber exatamente o que fazer para proteger a saúde do seu pet.</p>
-
-<h2>O que você vai aprender</h2>
-<ul>
-<li>Como identificar febre em cachorro</li>
-<li>Principais causas da febre</li>
-<li>Como medir a temperatura corretamente</li>
-<li>O que fazer e o que evitar</li>
-<li>Quando procurar um veterinário</li>
-</ul>
-
-<h2>O que é febre em cachorro</h2>
-<p>A febre é uma reação do organismo a infecções ou inflamações. Em cães, a temperatura normal varia entre 38°C e 39,2°C.</p>
-
-<p>Quando a temperatura ultrapassa esse limite, já é considerado um sinal de alerta e pode indicar que algo não está bem com a saúde do animal.</p>
-
-<h2>Principais sintomas de cachorro com febre</h2>
-<ul>
-<li>Falta de apetite</li>
-<li>Olhos avermelhados</li>
-<li>Corpo quente</li>
-<li>Falta de energia</li>
-<li>Tremores</li>
-<li>Respiração acelerada</li>
-</ul>
-
-<p>Além disso, muitos tutores relatam que o cachorro fica mais quieto e busca se isolar.</p>
-
-<h2>Principais causas da febre em cachorro</h2>
-
-<h3>Infecções</h3>
-<p>Infecções bacterianas ou virais são as causas mais comuns de febre em cães.</p>
-
-<h3>Vacinação recente</h3>
-<p>Após vacinas, é normal o cachorro apresentar febre leve por até 48 horas.</p>
-
-<h3>Doenças inflamatórias</h3>
-<p>Problemas internos também podem causar aumento da temperatura.</p>
-
-<h3>Intoxicação</h3>
-<p>Ingestão de alimentos ou substâncias tóxicas pode provocar febre.</p>
-
-<h2>Como medir a temperatura do cachorro</h2>
-<p>A forma mais precisa é usando um termômetro digital retal.</p>
-
-<ul>
-<li>Use um termômetro digital</li>
-<li>Aplique lubrificante na ponta</li>
-<li>Insira com cuidado no reto do animal</li>
-<li>Aguarde o resultado</li>
-</ul>
-
-<p>Se a temperatura estiver acima de 39,5°C, é sinal de alerta.</p>
-
-<h2>Cachorro com febre: o que fazer</h2>
-
-<ul>
-<li>Mantenha o animal hidratado</li>
-<li>Ofereça água fresca</li>
-<li>Deixe o ambiente ventilado</li>
-<li>Evite esforço físico</li>
-</ul>
-
-<p>Em alguns casos, compressas frias podem ajudar a reduzir a temperatura.</p>
-
-<h2>Erros comuns que você deve evitar</h2>
-
-<ul>
-<li>Dar remédio humano</li>
-<li>Ignorar os sintomas</li>
-<li>Esperar muito tempo para agir</li>
-<li>Não medir a temperatura corretamente</li>
-</ul>
-
-<p>Nunca dê medicamentos sem orientação veterinária, pois pode agravar a situação.</p>
-
-<h2>Quando levar ao veterinário</h2>
-<p>Procure ajuda profissional se:</p>
-
-<ul>
-<li>A febre durar mais de 24 horas</li>
-<li>O cachorro estiver muito apático</li>
-<li>Houver vômito ou diarreia</li>
-<li>A temperatura estiver muito alta</li>
-</ul>
-
-<h2>Links internos sugeridos</h2>
-<ul>
-<li>Cachorro com diarreia o que fazer</li>
-<li>Cachorro vomitando: o que pode ser</li>
-</ul>
-
-<a href="https://pt.wikipedia.org/wiki/Sa%C3%BAde_canina" target="_blank" rel="nofollow">
-Saúde canina na Wikipedia
-</a>
-
-<h2>Palavras-chave secundárias</h2>
-<ul>
-<li>cachorro com febre o que fazer</li>
-<li>como saber se o cachorro está com febre</li>
-<li>temperatura normal de cachorro</li>
-<li>febre em cachorro sintomas</li>
-</ul>
-<p>
-  <h2>Link externo confiável</h2>
-<p>
-  Para mais informações, consulte a 
-  <a href="https://pt.wikipedia.org/wiki/Febre" target="_blank" rel="nofollow">
-    Wikipedia sobre febre
-  </a>.
-</p>
-<h2>Perguntas frequentes</h2>
-
-<h3>Como saber se o cachorro está com febre sem termômetro?</h3>
-<p>Alguns sinais incluem nariz seco, falta de energia e corpo quente, mas o ideal é medir a temperatura.</p>
-
-<h3>Cachorro com febre pode morrer?</h3>
-<p>Depende da causa. Se não tratado, pode evoluir para algo grave.</p>
-
-<h3>Posso dar dipirona para cachorro?</h3>
-<p>Somente com orientação veterinária. Nunca medique por conta própria.</p>
-
-<h2>Conclusão</h2>
-<p>Identificar cachorro com febre sintomas e tratamento é essencial para agir rapidamente e evitar complicações. Fique atento aos sinais e nunca ignore mudanças no comportamento do seu pet.</p>
-
-<p>Se notar algo diferente, procure um veterinário o quanto antes. A saúde do seu cachorro depende de uma ação rápida e correta.</p>
-`
-},
-            { id: 'grama', title: 'Cachorro comendo grama é normal', excerpt: 'Descubra por que os cães buscam vegetação.', category: 'comportamento', content: 'Muitos cães comem grama para auxiliar na digestão ou induzir o vômito. Se for ocasional, geralmente não é problema.' },
-            { id: 'tremendo', title: 'Cachorro tremendo o que pode ser', excerpt: 'Tremores por frio, medo, dor ou problemas neurológicos.', category: 'saude', content: 'Tremores podem ser reações ao frio ou medo, mas também indicam dor intensa ou intoxicação. Observe o contexto.' },
-            { id: 'apetite', title: 'Cachorro com falta de apetite o que pode ser', excerpt: 'A inapetência requer atenção cuidadosa.', category: 'saude', content: 'Pode ser causada por dor, febre ou problemas dentários. Se recusar comida por mais de 24h, investigue a causa.' },
-            { id: 'urina', title: 'Cachorro urinando sangue o que pode ser', excerpt: 'Sangue na urina é sempre um sinal de alerta grave.', category: 'saude', content: 'Pode indicar infecção urinária, cálculos ou envenenamento. Exige exames imediatos.' },
-            { id: 'barriga', title: 'Cachorro com barriga inchada o que pode ser', excerpt: 'Pode indicar gases ou a perigosa torção gástrica.', category: 'saude', content: 'Barriga inchada e dura pode ser sinal de verminoses ou torção gástrica. É uma emergência de vida ou morte.' },
-            { id: 'tosse', title: 'Cachorro com tosse o que pode ser', excerpt: 'Irritação simples ou a famosa tosse dos canis.', category: 'saude', content: 'Pode indicar problemas cardíacos ou infecções respiratórias. A tosse dos canis é altamente contagiosa.' },
-            { id: 'halito', title: 'Cachorro com mau hálito o que pode ser', excerpt: 'Higiene bucal e problemas digestivos.', category: 'cuidados', content: 'Geralmente causado por tártaro. Hálito com cheiro estranho pode indicar problemas renais ou diabetes.' },
-            { id: 'olho_vermelho', title: 'Cachorro com olho vermelho o que pode ser', excerpt: 'Conjuntivite ou problemas mais graves.', category: 'saude', content: 'Vermelhidão pode ser irritação ou glaucoma. Se o cão coçar muito, procure ajuda.' },
-            { id: 'coceira', title: 'Cachorro com coceira o que pode ser', excerpt: 'Alergias, pulgas e fungos.', category: 'saude', content: 'Causas comuns são dermatite por pulga ou alergias alimentares. O controle de parasitas é o primeiro passo.' },
-            { id: 'carrapato', title: 'Cachorro com carrapato o que fazer', excerpt: 'Como remover com segurança e prevenir doenças.', category: 'cuidados', content: 'Carrapatos transmitem doenças graves. Remova com pinça sem esmagar. Use preventivos regularmente.' },
-            { id: 'pulga', title: 'Cachorro com pulga como eliminar', excerpt: 'Acabe com a infestação no pet e no ambiente.', category: 'cuidados', content: 'Trate o animal e o ambiente. Aspire a casa com frequência e use produtos específicos.' },
-            { id: 'ferida', title: 'Cachorro com ferida na pele o que pode ser', excerpt: 'Feridas por lambedura, fungos ou infecções.', category: 'saude', content: 'Qualquer ferida que não cicatriza deve ser avaliada. Pode ser sarna ou fungos. Mantenha limpo.' },
-            { id: 'dor_pata', title: 'Cachorro com dor na pata o que pode ser', excerpt: 'Cortes ou problemas articulares.', category: 'saude', content: 'Verifique objetos estranhos. A dor pode ser reflexo de problemas na coluna ou displasia.' },
-            { id: 'mancando', title: 'Cachorro mancando o que pode ser', excerpt: 'Lesões na pata ou problemas articulares.', category: 'saude', content: 'Verifique as almofadinhas. Pode ser luxação de patela ou ruptura de ligamento.' },
-            { id: 'secrecao', title: 'Cachorro com secreção no olho o que pode ser', excerpt: 'Remela excessiva indica infecção.', category: 'saude', content: 'Secreção amarelada pode ser conjuntivite. Limpe com soro fisiológico.' },
-            { id: 'nariz_seco', title: 'Cachorro com nariz seco é normal', excerpt: 'Quando é fisiológico ou sinal de febre.', category: 'saude', content: 'Nem sempre é febre. Ocorre após o sono ou sol. Se houver rachaduras, procure um veterinário.' },
-            { id: 'respirando_rapido', title: 'Cachorro respirando rápido o que pode ser', excerpt: 'Calor ou problemas pulmonares.', category: 'saude', content: 'Em repouso é preocupante. Pode indicar dor ou anemia. Língua roxa é emergência.' },
-            { id: 'soluco', title: 'Cachorro com soluço é normal', excerpt: 'Comum em filhotes.', category: 'comportamento', content: 'Geralmente acontece após comer rápido. Passa sozinho em minutos.' },
-            { id: 'espirrando', title: 'Cachorro espirrando muito o que pode ser', excerpt: 'Alergias ou corpo estranho.', category: 'saude', content: 'Espirros constantes podem indicar rinite ou algo preso. Sangramento é urgente.' },
-            { id: 'vomito_amarelo', title: 'Cachorro com vômito amarelo o que pode ser', excerpt: 'Líquido biliar por estômago vazio.', category: 'saude', content: 'Acontece quando o cão fica muito tempo sem comer. Fracione as refeições.' },
-            { id: 'diarreia_sangue', title: 'Cachorro com diarreia com sangue', excerpt: 'Emergência que indica lesão intestinal.', category: 'saude', content: 'Pode ser parvovirose ou verminose. O animal precisa de atendimento urgente.' },
-            { id: 'chorando', title: 'Cachorro chorando muito o que pode ser', excerpt: 'Pedido de ajuda por dor ou carência.', category: 'comportamento', content: 'Choram por dor, fome ou ansiedade. Se for repentino, pode ser dor intensa.' },
-            { id: 'latindo', title: 'Cachorro latindo muito o que fazer', excerpt: 'Lide com latidos por tédio ou medo.', category: 'comportamento', content: 'Indicam tédio ou ansiedade. Enriquecimento ambiental ajuda muito.' },
-            { id: 'destruindo', title: 'Cachorro destruindo coisas o que fazer', excerpt: 'Energia acumulada ou ansiedade.', category: 'comportamento', content: 'Falta de estímulo. Aumente passeios e ofereça brinquedos.' },
-            { id: 'cavando', title: 'Cachorro cavando buraco no quintal', excerpt: 'Instinto ou busca por frescor.', category: 'comportamento', content: 'Comportamento natural. Ofereça uma área própria para ele cavar.' },
-            { id: 'uivando', title: 'Cachorro uivando muito o que significa', excerpt: 'Herança ancestral de comunicação.', category: 'comportamento', content: 'Respondem a sons agudos ou por solidão. Reduza a ansiedade de separação.' },
-            { id: 'mordendo', title: 'Cachorro mordendo tudo o que fazer', excerpt: 'Comum em filhotes.', category: 'comportamento', content: 'Exploram o mundo. Redirecione para brinquedos adequados.' },
-            { id: 'fogos', title: 'Cachorro com medo de fogos o que fazer', excerpt: 'Proteja seu pet de ruídos altos.', category: 'comportamento', content: 'Crie um refúgio seguro. Nunca force o cão a enfrentar o barulho.' },
-            { id: 'ansiedade', title: 'Cachorro com ansiedade o que fazer', excerpt: 'Identifique sinais de estresse.', category: 'comportamento', content: 'Causa destruição e latidos. Requer exercícios e enriquecimento.' },
-            { id: 'agitado', title: 'Cachorro muito agitado o que pode ser', excerpt: 'Falta de rotina ou energia.', category: 'comportamento', content: 'Falta de exercícios. Passeios e jogos de faro ajudam.' },
-            { id: 'triste', title: 'Cachorro triste o que fazer', excerpt: 'Identifique a depressão canina.', category: 'comportamento', content: 'Mudanças na rotina causam apatia. Interação social é fundamental.' },
-            { id: 'dormindo', title: 'Cachorro dormindo muito é normal', excerpt: 'Sono natural ou sinal de doença.', category: 'saude', content: 'Dormem 12-14h. Se for excessivo, pode ser hipotireoidismo ou dor.' },
-            { id: 'lambendo_pata', title: 'Cachorro lambendo a pata o que pode ser', excerpt: 'Alergias ou ansiedade.', category: 'comportamento', content: 'Sinal de alergia ou estresse. Umidade pode causar fungos.' },
-            { id: 'queda_pelo', title: 'Cachorro com queda de pelo o que pode ser', excerpt: 'Troca natural ou problemas de saúde.', category: 'cuidados', content: 'Pode ser sazonal ou sarna. Boa alimentação ajuda na pelagem.' },
-            { id: 'pele_vermelha', title: 'Cachorro com pele vermelha o que pode ser', excerpt: 'Inflamação ou alergia.', category: 'saude', content: 'Sinal de irritação. Banhos medicinais podem ser necessários.' },
-            { id: 'alergia_pele', title: 'Cachorro com alergia na pele', excerpt: 'Diferença entre alimentar e atopia.', category: 'saude', content: 'Problemas crônicos. Controle a coceira e fortaleça a pele.' },
-            { id: 'caspa', title: 'Cachorro com caspa o que pode ser', excerpt: 'Pele seca ou oleosidade.', category: 'cuidados', content: 'Banhos quentes ou ar seco. Use produtos hidratantes.' },
-            { id: 'dor_ouvido', title: 'Cachorro com dor de ouvido sintomas', excerpt: 'Otites causam muito desconforto.', category: 'saude', content: 'Coçam as orelhas e inclinam a cabeça. Cheiro forte é comum.' },
-            { id: 'sacudindo_cabeca', title: 'Cachorro sacudindo a cabeça o que pode ser', excerpt: 'Incômodo no canal auditivo.', category: 'saude', content: 'Indica otite ou algo preso. Pode causar hematomas na orelha.' },
-            { id: 'ouvido_inflamado', title: 'Cachorro com ouvido inflamado', excerpt: 'Limpeza e medicação específica.', category: 'saude', content: 'Pode ser bacteriana ou fúngica. Requer gotas otológicas.' },
-            { id: 'dificuldade_andar', title: 'Cachorro com dificuldade para andar', excerpt: 'Problemas neurológicos ou ortopédicos.', category: 'saude', content: 'Hérnia de disco ou artrite. Fisioterapia ajuda muito.' },
-            { id: 'convulsao', title: 'Cachorro com convulsão o que fazer', excerpt: 'Proteja o animal durante o episódio.', category: 'saude', content: 'Não coloque a mão na boca. Afaste móveis e leve ao médico.' },
-            { id: 'lingua_roxa', title: 'Cachorro com língua roxa o que pode ser', excerpt: 'Falta de oxigênio - Emergência.', category: 'saude', content: 'Sinal de que o oxigênio não chega aos tecidos. Emergência absoluta.' },
-            { id: 'baba_excessiva', title: 'Cachorro com baba excessiva', excerpt: 'Náusea, dor ou envenenamento.', category: 'saude', content: 'Problemas nos dentes ou intoxicação. Observe outros sinais.' },
-            { id: 'olho_lacrimejando', title: 'Cachorro com olho lacrimejando', excerpt: 'Irritação ou duto obstruído.', category: 'saude', content: 'Cílios para dentro ou duto entupido. Limpe com soro.' },
-            { id: 'respiracao_ofegante', title: 'Cachorro com respiração ofegante', excerpt: 'Troca de calor ou dor.', category: 'saude', content: 'Normal no calor, mas em repouso indica dor ou coração.' },
-            { id: 'dificuldade_respirar', title: 'Cachorro com dificuldade para respirar', excerpt: 'Emergência respiratória.', category: 'saude', content: 'Sofrimento respiratório. Procure ajuda veterinária imediata.' }
+          {
+            id: 'vomito',
+            title: 'Cachorro vomitando o que pode ser',
+            excerpt: 'Entenda as causas, tipos de vômito e o que fazer para ajudar seu cachorro.',
+            category: 'saude',
+            content: `
+            <h2>Cachorro vomitando: o que pode ser?</h2>
+            <p>Ver um <strong>cachorro vomitando</strong> pode ser preocupante para qualquer tutor. Esse é um sintoma comum, mas que pode indicar desde situações simples até problemas mais graves de saúde. Por isso, entender <strong>cachorro vomitando o que pode ser</strong> é essencial para agir corretamente e garantir o bem-estar do seu pet.</p>
+            <p>O vômito em cães pode acontecer de forma isolada ou frequente. Em muitos casos, está relacionado à alimentação, mas também pode ser sinal de doenças. Neste guia completo, você vai descobrir as principais causas, quando se preocupar e o que fazer.</p>
+            <h2>Principais causas de cachorro vomitando</h2>
+            <h3>1. Alimentação inadequada</h3>
+            <p>Uma das causas mais comuns de cachorro vomitando é a ingestão de alimentos inadequados. Comer restos de comida, alimentos gordurosos ou até lixo pode irritar o estômago do animal e provocar vômito.</p>
+            <h3>2. Comer muito rápido</h3>
+            <p>Alguns cães têm o hábito de comer rapidamente, o que pode causar má digestão e levar ao vômito logo após a alimentação.</p>
+            <h3>3. Mudança de ração</h3>
+            <p>A troca repentina de ração pode causar desconforto gastrointestinal. O ideal é fazer a transição de forma gradual ao longo de alguns dias.</p>
+            <h3>4. Gastrite em cães</h3>
+            <p>A gastrite é uma inflamação no estômago que pode causar vômitos frequentes. Ela pode ser provocada por estresse, alimentação inadequada ou ingestão de substâncias tóxicas.</p>
+            <h3>5. Parasitas intestinais</h3>
+            <p>Vermes são uma causa comum, principalmente em filhotes. Por isso, manter a vermifugação em dia é fundamental para evitar problemas.</p>
+            <h3>6. Doenças mais graves</h3>
+            <p>Problemas como pancreatite, infecções virais e doenças renais também podem causar vômito. Nesses casos, geralmente o cachorro apresenta outros sintomas além do vômito.</p>
+            <h2>Tipos de vômito em cachorro</h2>
+            <p>Observar o tipo de vômito pode ajudar a identificar o problema:</p>
+            <ul>
+              <li><strong>Vômito amarelo:</strong> geralmente é bile e acontece quando o cachorro fica muito tempo sem comer.</li>
+              <li><strong>Vômito com espuma branca:</strong> pode indicar irritação no estômago ou gastrite.</li>
+              <li><strong>Vômito com sangue:</strong> é um sinal de alerta e exige atendimento veterinário imediato.</li>
+              <li><strong>Vômito com comida:</strong> pode indicar digestão inadequada ou ingestão rápida.</li>
+            </ul>
+            <h2>Quando o cachorro vomitando é preocupante?</h2>
+            <p>Nem todo vômito é grave, mas existem sinais que indicam que você deve procurar ajuda:</p>
+            <ul>
+              <li>Vômitos frequentes no mesmo dia</li>
+              <li>Presença de sangue no vômito</li>
+              <li>Falta de apetite</li>
+              <li>Fraqueza ou apatia</li>
+              <li>Diarreia junto com vômito</li>
+            </ul>
+            <p>Se o seu cachorro apresentar esses sintomas, é importante procurar um veterinário o quanto antes.</p>
+            <h2>O que fazer quando o cachorro está vomitando?</h2>
+            <h3>1. Faça jejum temporário</h3>
+            <p>Suspender a alimentação por 8 a 12 horas ajuda o estômago a se recuperar.</p>
+            <h3>2. Ofereça água aos poucos</h3>
+            <p>Manter o cachorro hidratado é essencial. Ofereça pequenas quantidades de água ao longo do dia.</p>
+            <h3>3. Alimentação leve</h3>
+            <p>Após o jejum, ofereça alimentos leves como frango cozido sem tempero e arroz.</p>
+            <h3>4. Evite automedicação</h3>
+            <p>Nunca dê remédios humanos ao seu cachorro sem orientação profissional.</p>
+            <h2>Como prevenir vômito em cachorro</h2>
+            <p>Algumas atitudes simples podem evitar esse problema:</p>
+            <ul>
+              <li>Oferecer alimentação de qualidade</li>
+              <li>Evitar mudanças bruscas na dieta</li>
+              <li>Manter vermifugação em dia</li>
+              <li>Evitar acesso ao lixo</li>
+              <li>Controlar a velocidade da alimentação</li>
+            </ul>
+            <h2>Conclusão</h2>
+            <p>O <strong>cachorro vomitando</strong> pode ter diversas causas, desde situações simples até problemas mais sérios. Observar o comportamento do animal e agir rapidamente faz toda a diferença para a saúde do seu pet.</p>
+            <p>Se os sintomas persistirem ou piorarem, procure um veterinário. Cuidar da alimentação e manter uma rotina saudável é a melhor forma de prevenção.</p>
+            <p>Saiba mais sobre a <a href="https://en.wikipedia.org/wiki/Bilious_vomiting_syndrome" target="_blank" rel="noopener noreferrer">Síndrome do Vômito Bilioso</a>.</p>
+            <p>Veja também: <a href="#diarreia">Cachorro com diarreia o que fazer</a></p>
+            `
+          },
+          {
+            id: 'diarreia',
+            title: 'Cachorro com diarreia o que fazer',
+            excerpt: 'Dicas de primeiros socorros e como identificar a gravidade.',
+            category: 'saude',
+            content: `
+            <h2>Cachorro com diarreia o que fazer</h2>
+            <p>Você percebeu que seu cachorro está com diarreia e não sabe o que fazer? Essa é uma situação mais comum do que parece, mas que sempre gera preocupação. Afinal, mudanças nas fezes do pet podem indicar desde algo simples, como uma alteração na alimentação, até problemas mais sérios que precisam de atenção rápida.</p>
+            <p>A diarreia em cães pode surgir de repente e, muitas vezes, vem acompanhada de outros sinais, como apatia, falta de apetite ou desconforto abdominal. Por isso, entender o que está acontecendo e agir da forma correta é essencial para garantir o bem-estar do seu amigo.</p>
+            <h3>Cachorro com diarreia o que fazer: principais causas</h3>
+            <p>Antes de tomar qualquer atitude, é importante entender que a diarreia não é uma doença em si, mas um sintoma. Entre as causas mais comuns estão mudanças bruscas na alimentação, ingestão de alimentos inadequados, restos de comida, lixo ou até algo estragado.</p>
+            <p>Além disso, parasitas intestinais, como vermes, também podem provocar diarreia. Em alguns casos, o problema pode estar relacionado a infecções, alergias alimentares ou até mesmo estresse. Se quiser entender melhor o conceito geral de diarreia, você pode consultar a <a href="https://pt.wikipedia.org/wiki/Diarreia" target="_blank" rel="nofollow noopener">Wikipedia sobre diarreia</a>, que traz uma explicação mais ampla sobre o tema.</p>
+            <h3>Sinais de alerta que você deve observar</h3>
+            <p>Nem toda diarreia é grave, mas alguns sinais indicam que o problema pode ser mais sério. Fique atento se o seu cachorro apresentar fezes muito líquidas por várias horas, presença de sangue, odor muito forte ou mudança de cor.</p>
+            <p>Outros sintomas importantes incluem vômito, febre, fraqueza, desidratação e falta de interesse por comida ou água. Filhotes e cães idosos merecem atenção redobrada, pois podem piorar mais rapidamente.</p>
+            <h3>O que fazer em casa com segurança</h3>
+            <p>Se o cachorro com diarreia estiver ativo, sem outros sintomas graves, algumas medidas simples podem ajudar. A primeira delas é garantir que ele tenha acesso constante a água fresca, já que a perda de líquidos pode levar à desidratação.</p>
+            <p>Outra orientação comum é oferecer uma alimentação mais leve por um período curto. Alimentos simples, em pequenas quantidades, podem ajudar o sistema digestivo a se recuperar. Evite petiscos, restos de comida e qualquer alimento diferente do habitual.</p>
+            <p>Também é importante observar o comportamento do animal ao longo do dia. Muitas vezes, a diarreia pode melhorar sozinha em poucas horas quando está relacionada a algo pontual.</p>
+            <h3>Quando a diarreia pode ser grave?</h3>
+            <p>Se a diarreia persistir por mais de 24 horas, é fundamental ficar em alerta. Casos que envolvem sangue nas fezes, dor aparente ou sinais de desidratação não devem ser ignorados. Nesses casos, a avaliação de um profissional é indispensável.</p>
+            <p>Outro ponto importante é quando o cachorro já tem algum problema de saúde ou é muito jovem. Nessas situações, o organismo é mais sensível e pode reagir de forma mais intensa.</p>
+            <h3>Quando procurar um veterinário</h3>
+            <p>Você deve procurar um veterinário imediatamente se perceber que a diarreia não melhora, se há outros sintomas associados ou se o cachorro parece abatido. Apenas um profissional poderá identificar a causa exata e indicar o tratamento adequado.</p>
+            <p>Evite medicar o animal por conta própria, pois isso pode agravar a situação. Cada caso é único, e o diagnóstico correto faz toda a diferença na recuperação do pet.</p>
+            <h3>Como evitar diarreia em cachorro</h3>
+            <a href="https://pt.wikipedia.org/wiki/Sa%C3%BAde_canina" target="_blank" rel="nofollow">Saúde canina na Wikipedia</a>
+            <p>Prevenir é sempre o melhor caminho. Manter uma alimentação equilibrada, evitar mudanças bruscas na dieta e não oferecer comida humana são atitudes simples que ajudam bastante.</p>
+            <p>Além disso, manter a vermifugação em dia, oferecer água limpa e evitar que o cachorro tenha acesso ao lixo ou objetos desconhecidos também reduz muito o risco de problemas digestivos.</p>
+            <h3>Conclusão: fique atento aos sinais do seu cachorro</h3>
+            <p>Ao notar cachorro com diarreia, o mais importante é observar o comportamento e agir com calma. Em muitos casos, o problema é passageiro, mas nunca deve ser ignorado.</p>
+            <p>Cuidar da saúde do seu pet envolve atenção aos pequenos detalhes. Quanto mais cedo você identificar algo diferente, maiores são as chances de resolver rapidamente e evitar complicações.</p>
+            <h3>Perguntas frequentes</h3>
+            <p><strong>Diarreia em cachorro é normal?</strong><br>Pode acontecer ocasionalmente, mas não deve ser frequente.</p>
+            <p><strong>Quanto tempo pode durar?</strong><br>Se durar mais de 24 horas, já é recomendado buscar orientação.</p>
+            <p><strong>Posso alimentar normalmente?</strong><br>O ideal é oferecer uma dieta leve temporariamente.</p>
+            <p><strong>Preciso levar ao veterinário sempre?</strong><br>Nem sempre, mas é necessário se houver outros sintomas.</p>
+            <p><strong>Diarreia pode ser grave?</strong><br>Sim, principalmente se vier acompanhada de outros sinais como vômito ou fraqueza.</p>
+            `
+          },
+          {
+            id: 'febre',
+            title: 'Cachorro com febre sintomas e tratamento: como identificar e agir rápido',
+            excerpt: 'Saiba como medir a temperatura, identificar os sinais de febre e tratar seu cachorro com segurança.',
+            category: 'saude',
+            content: `
+            <h2>Cachorro com febre sintomas e tratamento: como identificar e agir rápido</h2>
+            <p>Se você percebeu seu cachorro diferente, mais quieto ou sem apetite, pode estar lidando com cachorro com febre sintomas e tratamento. Esse é um problema comum, mas que exige atenção rápida.</p>
+            <p>Neste guia completo, você vai aprender como identificar os sinais de febre, medir corretamente a temperatura e saber exatamente o que fazer para proteger a saúde do seu pet.</p>
+            <h2>O que é febre em cachorro</h2>
+            <p>A febre é uma reação do organismo a infecções ou inflamações. Em cães, a temperatura normal varia entre 38°C e 39,2°C.</p>
+            <p>Quando a temperatura ultrapassa esse limite, já é considerado um sinal de alerta e pode indicar que algo não está bem com a saúde do animal.</p>
+            <h2>Principais sintomas de cachorro com febre</h2>
+            <ul>
+            <li>Falta de apetite</li>
+            <li>Olhos avermelhados</li>
+            <li>Corpo quente</li>
+            <li>Falta de energia</li>
+            <li>Tremores</li>
+            <li>Respiração acelerada</li>
+            </ul>
+            <h2>Principais causas da febre em cachorro</h2>
+            <p>Infecções bacterianas ou virais são as causas mais comuns. Vacinação recente, doenças inflamatórias e intoxicação também podem provocar febre.</p>
+            <h2>Como medir a temperatura do cachorro</h2>
+            <p>A forma mais precisa é usando um termômetro digital retal.</p>
+            <h2>Cachorro com febre: o que fazer</h2>
+            <p>Mantenha o animal hidratado, ofereça água fresca e deixe o ambiente ventilado. Nunca dê remédio humano.</p>
+            `
+          },
+          {
+            id: 'grama',
+            title: 'Cachorro comendo grama é normal? Descubra o que isso realmente significa',
+            excerpt: 'Cachorro comendo grama é normal? Entenda as causas, quando se preocupar e como agir para proteger a saúde do seu pet.',
+            category: 'comportamento',
+            content: `
+            <h2>Introdução</h2>
+            <p>Cachorro comendo grama é normal? Essa é uma dúvida muito comum entre donos de pets. Se você já flagrou seu cachorro mastigando grama no quintal ou durante o passeio, provavelmente ficou preocupado.</p>
+            <p>A boa notícia é que, na maioria dos casos, esse comportamento não é grave. Neste artigo, você vai entender os motivos, quando se preocupar e o que fazer para garantir a saúde do seu cachorro.</p>
+            <h2>Sumário</h2>
+            <ul>
+              <li>O que significa cachorro comendo grama</li>
+              <li>Principais causas desse comportamento</li>
+              <li>Quando se preocupar</li>
+              <li>Como resolver ou evitar</li>
+              <li>Dicas importantes</li>
+              <li>Erros comuns</li>
+              <li>FAQ</li>
+            </ul>
+            <h2>O que significa cachorro comendo grama</h2>
+            <p>O hábito de cachorro comendo grama é mais comum do que parece. Muitos especialistas consideram esse comportamento natural, herdado dos ancestrais dos cães.</p>
+            <p>Na natureza, os cães selvagens ingerem plantas junto com suas presas. Isso pode ajudar na digestão e até na limpeza do sistema digestivo.</p>
+            <h3>É sempre normal?</h3>
+            <p>Nem sempre. Em muitos casos é apenas um comportamento instintivo, mas também pode indicar desconforto ou necessidade nutricional.</p>
+            <h2>Principais causas de cachorro comendo grama</h2>
+            <h3>1. Problemas digestivos</h3>
+            <p>Alguns cães comem grama para induzir o vômito e aliviar desconfortos estomacais.</p>
+            <ul>
+              <li>Má digestão</li>
+              <li>Gases</li>
+              <li>Enjoo</li>
+            </ul>
+            <h3>2. Falta de nutrientes</h3>
+            <p>Uma alimentação desequilibrada pode levar o cachorro a buscar fibras na grama.</p>
+            <ul>
+              <li>Falta de fibras</li>
+              <li>Dieta pobre em nutrientes</li>
+            </ul>
+            <h3>3. Tédio ou ansiedade</h3>
+            <p>Assim como humanos, cães também podem desenvolver hábitos por estresse ou falta de estímulo.</p>
+            <ul>
+              <li>Falta de atividade física</li>
+              <li>Solidão</li>
+              <li>Ansiedade</li>
+            </ul>
+            <h3>4. Curiosidade ou hábito</h3>
+            <p>Principalmente em filhotes, comer grama pode ser apenas curiosidade.</p>
+            <h2>Quando se preocupar</h2>
+            <p>Apesar de cachorro comendo grama ser comum, existem sinais de alerta:</p>
+            <ul>
+              <li>Vômitos frequentes</li>
+              <li>Diarreia constante</li>
+              <li>Falta de apetite</li>
+              <li>Letargia</li>
+              <li>Presença de sangue no vômito</li>
+            </ul>
+            <p>Se você notar esses sintomas, procure um veterinário imediatamente.</p>
+            <h2>Como resolver ou evitar esse comportamento</h2>
+            <h3>1. Melhore a alimentação</h3>
+            <p>Ofereça uma ração de qualidade e rica em nutrientes.</p>
+            <h3>2. Inclua fibras na dieta</h3>
+            <p>Alimentos naturais, como cenoura e abóbora, podem ajudar.</p>
+            <h3>3. Aumente a atividade física</h3>
+            <ul>
+              <li>Passeios diários</li>
+              <li>Brinquedos interativos</li>
+            </ul>
+            <h3>4. Evite acesso a grama contaminada</h3>
+            <p>Grama com pesticidas pode ser perigosa para o seu pet.</p>
+            <h2>Dicas importantes</h2>
+            <ul>
+              <li>Observe a frequência do comportamento</li>
+              <li>Evite broncas — isso pode aumentar a ansiedade</li>
+              <li>Mantenha visitas regulares ao veterinário</li>
+              <li>Ofereça estímulos físicos e mentais</li>
+            </ul>
+            <h2>Erros comuns</h2>
+            <ul>
+              <li>Ignorar sinais de problemas de saúde</li>
+              <li>Achar que é sempre normal</li>
+              <li>Oferecer alimentação de baixa qualidade</li>
+              <li>Não investigar mudanças de comportamento</li>
+            </ul>
+            <h2>Links internos sugeridos</h2>
+            <ul>
+              <li><a href="#vomito">Cachorro vomitando: o que pode ser?</a></li>
+              <li><a href="#diarreia">Cachorro com diarreia: o que fazer?</a></li>
+            </ul>
+            <h2>Link externo confiável</h2>
+            <ul>
+              <li><a href="https://pt.wikipedia.org/wiki/C%C3%A3o" target="_blank" rel="noopener noreferrer">Saiba mais sobre cães na Wikipedia</a></li>
+            </ul>
+            <h2>FAQ (Perguntas Frequentes)</h2>
+            <h3>Cachorro comendo grama é sinal de doença?</h3>
+            <p>Nem sempre. Pode ser apenas comportamento natural, mas se vier acompanhado de outros sintomas, é importante investigar.</p>
+            <h3>Devo impedir meu cachorro de comer grama?</h3>
+            <p>Se for ocasional, não há problema. Mas evite grama com produtos químicos ou contaminada.</p>
+            <h3>Por que meu cachorro come grama e depois vomita?</h3>
+            <p>Isso pode ser uma forma de aliviar desconforto estomacal. Se acontecer com frequência, procure um veterinário.</p>
+            <h2>Conclusão</h2>
+            <p>Cachorro comendo grama é normal na maioria dos casos, mas não deve ser ignorado. Observar o comportamento e identificar possíveis causas é essencial para garantir a saúde do seu pet.</p>
+            <p>Se você quer cuidar melhor do seu cachorro, continue explorando nossos conteúdos e fique atento a qualquer mudança no comportamento dele.</p>
+            `
+          },
+          { id: 'tremendo', title: 'Cachorro tremendo o que pode ser', excerpt: 'Tremores por frio, medo, dor ou problemas neurológicos.', category: 'saude', content: 'Tremores podem ser reações ao frio ou medo, mas também indicam dor intensa ou intoxicação. Observe o contexto.' },
+          { id: 'apetite', title: 'Cachorro com falta de apetite o que pode ser', excerpt: 'A inapetência requer atenção cuidadosa.', category: 'saude', content: 'Pode ser causada por dor, febre ou problemas dentários. Se recusar comida por mais de 24h, investigue a causa.' },
+          { id: 'urina', title: 'Cachorro urinando sangue o que pode ser', excerpt: 'Sangue na urina é sempre um sinal de alerta grave.', category: 'saude', content: 'Pode indicar infecção urinária, cálculos ou envenenamento. Exige exames imediatos.' },
+          { id: 'barriga', title: 'Cachorro com barriga inchada o que pode ser', excerpt: 'Pode indicar gases ou a perigosa torção gástrica.', category: 'saude', content: 'Barriga inchada e dura pode ser sinal de verminoses ou torção gástrica. É uma emergência de vida ou morte.' },
+          { id: 'tosse', title: 'Cachorro com tosse o que pode ser', excerpt: 'Irritação simples ou a famosa tosse dos canis.', category: 'saude', content: 'Pode indicar problemas cardíacos ou infecções respiratórias. A tosse dos canis é altamente contagiosa.' },
+          { id: 'halito', title: 'Cachorro com mau hálito o que pode ser', excerpt: 'Higiene bucal e problemas digestivos.', category: 'cuidados', content: 'Geralmente causado por tártaro. Hálito com cheiro estranho pode indicar problemas renais ou diabetes.' },
+          { id: 'olho_vermelho', title: 'Cachorro com olho vermelho o que pode ser', excerpt: 'Conjuntivite ou problemas mais graves.', category: 'saude', content: 'Vermelhidão pode ser irritação ou glaucoma. Se o cão coçar muito, procure ajuda.' },
+          { id: 'coceira', title: 'Cachorro com coceira o que pode ser', excerpt: 'Alergias, pulgas e fungos.', category: 'saude', content: 'Causas comuns são dermatite por pulga ou alergias alimentares. O controle de parasitas é o primeiro passo.' },
+          { id: 'carrapato', title: 'Cachorro com carrapato o que fazer', excerpt: 'Como remover com segurança e prevenir doenças.', category: 'cuidados', content: 'Carrapatos transmitem doenças graves. Remova com pinça sem esmagar. Use preventivos regularmente.' },
+          { id: 'pulga', title: 'Cachorro com pulga como eliminar', excerpt: 'Acabe com a infestação no pet e no ambiente.', category: 'cuidados', content: 'Trate o animal e o ambiente. Aspire a casa com frequência e use produtos específicos.' },
+          { id: 'ferida', title: 'Cachorro com ferida na pele o que pode ser', excerpt: 'Feridas por lambedura, fungos ou infecções.', category: 'saude', content: 'Qualquer ferida que não cicatriza deve ser avaliada. Pode ser sarna ou fungos. Mantenha limpo.' },
+          { id: 'dor_pata', title: 'Cachorro com dor na pata o que pode ser', excerpt: 'Cortes ou problemas articulares.', category: 'saude', content: 'Verifique objetos estranhos. A dor pode ser reflexo de problemas na coluna ou displasia.' },
+          { id: 'mancando', title: 'Cachorro mancando o que pode ser', excerpt: 'Lesões na pata ou problemas articulares.', category: 'saude', content: 'Verifique as almofadinhas. Pode ser luxação de patela ou ruptura de ligamento.' },
+          { id: 'secrecao', title: 'Cachorro com secreção no olho o que pode ser', excerpt: 'Remela excessiva indica infecção.', category: 'saude', content: 'Secreção amarelada pode ser conjuntivite. Limpe com soro fisiológico.' },
+          { id: 'nariz_seco', title: 'Cachorro com nariz seco é normal', excerpt: 'Quando é fisiológico ou sinal de febre.', category: 'saude', content: 'Nem sempre é febre. Ocorre após o sono ou sol. Se houver rachaduras, procure um veterinário.' },
+          { id: 'respirando_rapido', title: 'Cachorro respirando rápido o que pode ser', excerpt: 'Calor ou problemas pulmonares.', category: 'saude', content: 'Em repouso é preocupante. Pode indicar dor ou anemia. Língua roxa é emergência.' },
+          { id: 'soluco', title: 'Cachorro com soluço é normal', excerpt: 'Comum em filhotes.', category: 'comportamento', content: 'Geralmente acontece após comer rápido. Passa sozinho em minutos.' },
+          { id: 'espirrando', title: 'Cachorro espirrando muito o que pode ser', excerpt: 'Alergias ou corpo estranho.', category: 'saude', content: 'Espirros constantes podem indicar rinite ou algo preso. Sangramento é urgente.' },
+          { id: 'vomito_amarelo', title: 'Cachorro com vômito amarelo o que pode ser', excerpt: 'Líquido biliar por estômago vazio.', category: 'saude', content: 'Acontece quando o cão fica muito tempo sem comer. Fracione as refeições.' },
+          { id: 'diarreia_sangue', title: 'Cachorro com diarreia com sangue', excerpt: 'Emergência que indica lesão intestinal.', category: 'saude', content: 'Pode ser parvovirose ou verminose. O animal precisa de atendimento urgente.' },
+          { id: 'chorando', title: 'Cachorro chorando muito o que pode ser', excerpt: 'Pedido de ajuda por dor ou carência.', category: 'comportamento', content: 'Choram por dor, fome ou ansiedade. Se for repentino, pode ser dor intensa.' },
+          { id: 'latindo', title: 'Cachorro latindo muito o que fazer', excerpt: 'Lide com latidos por tédio ou medo.', category: 'comportamento', content: 'Indicam tédio ou ansiedade. Enriquecimento ambiental ajuda muito.' },
+          { id: 'destruindo', title: 'Cachorro destruindo coisas o que fazer', excerpt: 'Energia acumulada ou ansiedade.', category: 'comportamento', content: 'Falta de estímulo. Aumente passeios e ofereça brinquedos.' },
+          { id: 'cavando', title: 'Cachorro cavando buraco no quintal', excerpt: 'Instinto ou busca por frescor.', category: 'comportamento', content: 'Comportamento natural. Ofereça uma área própria para ele cavar.' },
+          { id: 'uivando', title: 'Cachorro uivando muito o que significa', excerpt: 'Herança ancestral de comunicação.', category: 'comportamento', content: 'Respondem a sons agudos ou por solidão. Reduza a ansiedade de separação.' },
+          { id: 'mordendo', title: 'Cachorro mordendo tudo o que fazer', excerpt: 'Comum em filhotes.', category: 'comportamento', content: 'Exploram o mundo. Redirecione para brinquedos adequados.' },
+          { id: 'fogos', title: 'Cachorro com medo de fogos o que fazer', excerpt: 'Proteja seu pet de ruídos altos.', category: 'comportamento', content: 'Crie um refúgio seguro. Nunca force o cão a enfrentar o barulho.' },
+          { id: 'ansiedade', title: 'Cachorro com ansiedade o que fazer', excerpt: 'Identifique sinais de estresse.', category: 'comportamento', content: 'Causa destruição e latidos. Requer exercícios e enriquecimento.' },
+          { id: 'agitado', title: 'Cachorro muito agitado o que pode ser', excerpt: 'Falta de rotina ou energia.', category: 'comportamento', content: 'Falta de exercícios. Passeios e jogos de faro ajudam.' },
+          { id: 'triste', title: 'Cachorro triste o que fazer', excerpt: 'Identifique a depressão canina.', category: 'comportamento', content: 'Mudanças na rotina causam apatia. Interação social é fundamental.' },
+          { id: 'dormindo', title: 'Cachorro dormindo muito é normal', excerpt: 'Sono natural ou sinal de doença.', category: 'saude', content: 'Dormem 12-14h. Se for excessivo, pode ser hipotireoidismo ou dor.' },
+          { id: 'lambendo_pata', title: 'Cachorro lambendo a pata o que pode ser', excerpt: 'Alergias ou ansiedade.', category: 'comportamento', content: 'Sinal de alergia ou estresse. Umidade pode causar fungos.' },
+          { id: 'queda_pelo', title: 'Cachorro com queda de pelo o que pode ser', excerpt: 'Troca natural ou problemas de saúde.', category: 'cuidados', content: 'Pode ser sazonal ou sarna. Boa alimentação ajuda na pelagem.' },
+          { id: 'pele_vermelha', title: 'Cachorro com pele vermelha o que pode ser', excerpt: 'Inflamação ou alergia.', category: 'saude', content: 'Sinal de irritação. Banhos medicinais podem ser necessários.' },
+          { id: 'alergia_pele', title: 'Cachorro com alergia na pele', excerpt: 'Diferença entre alimentar e atopia.', category: 'saude', content: 'Problemas crônicos. Controle a coceira e fortaleça a pele.' },
+          { id: 'caspa', title: 'Cachorro com caspa o que pode ser', excerpt: 'Pele seca ou oleosidade.', category: 'cuidados', content: 'Banhos quentes ou ar seco. Use produtos hidratantes.' },
+          { id: 'dor_ouvido', title: 'Cachorro com dor de ouvido sintomas', excerpt: 'Otites causam muito desconforto.', category: 'saude', content: 'Coçam as orelhas e inclinam a cabeça. Cheiro forte é comum.' },
+          { id: 'sacudindo_cabeca', title: 'Cachorro sacudindo a cabeça o que pode ser', excerpt: 'Incômodo no canal auditivo.', category: 'saude', content: 'Indica otite ou algo preso. Pode causar hematomas na orelha.' },
+          { id: 'ouvido_inflamado', title: 'Cachorro com ouvido inflamado', excerpt: 'Limpeza e medicação específica.', category: 'saude', content: 'Pode ser bacteriana ou fúngica. Requer gotas otológicas.' },
+          { id: 'dificuldade_andar', title: 'Cachorro com dificuldade para andar', excerpt: 'Problemas neurológicos ou ortopédicos.', category: 'saude', content: 'Hérnia de disco ou artrite. Fisioterapia ajuda muito.' },
+          { id: 'convulsao', title: 'Cachorro com convulsão o que fazer', excerpt: 'Proteja o animal durante o episódio.', category: 'saude', content: 'Não coloque a mão na boca. Afaste móveis e leve ao médico.' },
+          { id: 'lingua_roxa', title: 'Cachorro com língua roxa o que pode ser', excerpt: 'Falta de oxigênio - Emergência.', category: 'saude', content: 'Sinal de que o oxigênio não chega aos tecidos. Emergência absoluta.' },
+          { id: 'baba_excessiva', title: 'Cachorro com baba excessiva', excerpt: 'Náusea, dor ou envenenamento.', category: 'saude', content: 'Problemas nos dentes ou intoxicação. Observe outros sinais.' },
+          { id: 'olho_lacrimejando', title: 'Cachorro com olho lacrimejando', excerpt: 'Irritação ou duto obstruído.', category: 'saude', content: 'Cílios para dentro ou duto entupido. Limpe com soro.' },
+          { id: 'respiracao_ofegante', title: 'Cachorro com respiração ofegante', excerpt: 'Troca de calor ou dor.', category: 'saude', content: 'Normal no calor, mas em repouso indica dor ou coração.' },
+          { id: 'dificuldade_respirar', title: 'Cachorro com dificuldade para respirar', excerpt: 'Emergência respiratória.', category: 'saude', content: 'Sofrimento respiratório. Procure ajuda veterinária imediata.' }
         ];
+    </script>
 
-        function init() { lucide.createIcons(); renderGrid(ARTICLES); }
+    <script>
+        function init() { 
+            lucide.createIcons(); 
+            document.getElementById('year').textContent = new Date().getFullYear();
+            renderGrid(ARTICLES); 
+
+            // Intercept internal links in article content
+            document.getElementById('article-content').addEventListener('click', (e) => {
+                const anchor = e.target.closest('a');
+                if (anchor && anchor.getAttribute('href')?.startsWith('#')) {
+                    e.preventDefault();
+                    const id = anchor.getAttribute('href').substring(1);
+                    showArticle(id);
+                }
+            });
+        }
+
         function renderGrid(list) {
             const grid = document.getElementById('articles-grid');
             grid.innerHTML = list.map(a => `
@@ -482,34 +480,66 @@ Saúde canina na Wikipedia
                 </div>`).join('');
             lucide.createIcons();
         }
-        function getCategoryClass(c) { return c === 'saude' ? 'bg-red-50 text-red-500' : c === 'comportamento' ? 'bg-blue-50 text-blue-500' : 'bg-green-50 text-green-500'; }
-        function getCategoryIcon(c) { return c === 'saude' ? 'activity' : c === 'comportamento' ? 'heart' : 'info'; }
+
+        function getCategoryClass(c) { 
+            switch(c) {
+                case 'saude': return 'bg-red-50 text-red-500';
+                case 'comportamento': return 'bg-blue-50 text-blue-500';
+                default: return 'bg-green-50 text-green-500';
+            }
+        }
+
+        function getCategoryIcon(c) { 
+            switch(c) {
+                case 'saude': return 'activity';
+                case 'comportamento': return 'heart';
+                default: return 'info';
+            }
+        }
+
         function filterArticles() {
             const q = document.getElementById('search-input').value.toLowerCase();
-            renderGrid(ARTICLES.filter(a => a.title.toLowerCase().includes(q) || a.excerpt.toLowerCase().includes(q)));
+            const filtered = ARTICLES.filter(a => a.title.toLowerCase().includes(q) || a.excerpt.toLowerCase().includes(q));
+            renderGrid(filtered);
         }
+
         function showPage(p) {
             document.getElementById('home-page').classList.toggle('hidden', p !== 'home');
             document.getElementById('article-page').classList.toggle('hidden', p === 'home');
-            window.scrollTo(0, 0); closeMenu();
+            window.scrollTo(0, 0); 
+            closeMenu();
         }
+
         function showArticle(id) {
-            const a = ARTICLES.find(x => x.id === id); if (!a) return;
-            document.getElementById('article-content').innerHTML = `
-                <div class="space-y-4">
-                    <span class="px-3 py-1 bg-green-50 text-green-600 text-xs font-bold uppercase tracking-wider rounded-full">${a.category}</span>
-                    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 leading-tight">${a.title}</h1>
-                </div>
-                <div class="text-gray-700 leading-relaxed text-lg prose">${a.content.split('\n').map(p => `<p>${p}</p>`).join('')}</div>
-                <div class="pt-8 border-t border-gray-100 mt-12"><div class="bg-yellow-50 p-6 rounded-2xl flex gap-4 items-start"><div class="bg-yellow-100 p-2 rounded-lg text-yellow-700"><i data-lucide="info" size="20"></i></div><div class="space-y-1"><h4 class="font-bold text-yellow-900">Aviso</h4><p class="text-sm text-yellow-800">Este conteúdo é informativo. Procure um veterinário.</p></div></div></div>`;
-            showPage('article'); lucide.createIcons();
+            const a = ARTICLES.find(x => x.id === id); 
+            if (!a) return;
+            
+            document.getElementById('article-header').innerHTML = `
+                <span class="px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-full ${getCategoryClass(a.category)}">${a.category}</span>
+                <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 leading-tight">${a.title}</h1>
+            `;
+            document.getElementById('article-content').innerHTML = a.content;
+            
+            showPage('article'); 
+            lucide.createIcons();
         }
+
         function toggleMenu() {
-            const m = document.getElementById('mobile-menu'); const i = document.getElementById('menu-icon');
-            const open = !m.classList.contains('hidden');
-            m.classList.toggle('hidden'); i.setAttribute('data-lucide', open ? 'menu' : 'x'); lucide.createIcons();
+            const m = document.getElementById('mobile-menu'); 
+            const i = document.getElementById('menu-icon');
+            const isOpen = !m.classList.contains('hidden');
+            m.classList.toggle('hidden'); 
+            i.setAttribute('data-lucide', isOpen ? 'menu' : 'x'); 
+            lucide.createIcons();
         }
-        function closeMenu() { document.getElementById('mobile-menu').classList.add('hidden'); const i = document.getElementById('menu-icon'); if(i) i.setAttribute('data-lucide', 'menu'); lucide.createIcons(); }
+
+        function closeMenu() { 
+            document.getElementById('mobile-menu').classList.add('hidden'); 
+            const i = document.getElementById('menu-icon'); 
+            if(i) i.setAttribute('data-lucide', 'menu'); 
+            lucide.createIcons(); 
+        }
+
         window.onload = init;
     </script>
 </body>
